@@ -8,47 +8,55 @@ module.exports = (sequelize, DataTypes) => {
       },
       email: {
         type: DataTypes.STRING,
+        allowNull: false,
         unique: {
             msg: "L'adresse email ou le mot de passe sont déjà pris."
         }
       },
       user_password: {
         type: DataTypes.STRING,
+        allowNull: false,
         min:{
             args:[4],
             msg:"Le mot de passe ne peut pas être inférieur à 4 caractères"
        }
       },
       firstname: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: false
       },
       lastname: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: false
       },
       avatar: {
         type: DataTypes.STRING
       },
       yearsold: {
         type: DataTypes.INTEGER,
-        min:{
-            args:[1],
-            msg:"L'age 0 n'existe pas"
-       }
+        allowNull: false,
+        validate: {
+            min: 1,
+            max: 120,
+          },
       },
       phone_number: {
         type: DataTypes.STRING
       },
       street_number: {
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        allowNull: false
       },
       batiment: {
         type: DataTypes.STRING
       },
       postal_code: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: false
       },
-      address_name: {
-        type: DataTypes.STRING
+      street_name: {
+        type: DataTypes.STRING,
+        allowNull: false
       },
       dt_inscription: {
         type: DataTypes.DATE,
