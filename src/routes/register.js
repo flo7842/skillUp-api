@@ -58,7 +58,7 @@ module.exports = (app) => {
             if(error instanceof ValidationError){
                 return res.status(400).json({ message: error.message, data: error })
             }
-            const message = `L'utilisateur n\'a pas pu être connecté. Réesayez dans quelques isntants.`;
+            const message = `L'utilisateur n\'a pas pu être connecté. Réesayez dans quelques instants.`;
             return res.json({ message, data: error })
         })
           // let's assume the default of isAdmin is false
