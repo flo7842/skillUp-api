@@ -1,8 +1,6 @@
 const { User } = require('../../db/sequelize')
 const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
-const privateKey = require('../../auth/private_key')
-const { ValidationError, UniqueConstraintError, EmptyResultError } = require('sequelize')  
+const { ValidationError } = require('sequelize')  
 const checkEmailAndPass = require('../../middlewares/checkEmailAndPass')
 const checkPhoneNumber = require('../../middlewares/checkPhoneNumber')
 module.exports = (app) => {
@@ -31,22 +29,6 @@ module.exports = (app) => {
           
           ).then(user => {
             
-            if(user.user_password.length === 0){
-                
-                const message = `Aucune valeur définis pour le mot de passe`;
-                return res.status(401).json({ message })
-
-            }
-
-            if(user.user_password.length < 3){
-                const message = `Votre mot de passe est trop court (min = 3)`;
-                return res.status(401).json({ message })
-            }
-            
-            
-            
-           
-    
             const message = `L'utilisateur a été crée avec succès`;
             return res.json({ message })
 

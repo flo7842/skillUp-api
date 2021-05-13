@@ -24,6 +24,9 @@ require('./src/routes/user/deleteUser')(app)
 require('./src/routes/user/register')(app)
 require('./src/routes/user/login')(app)
 
+require('./src/routes/category/createCategory')(app)
+require('./src/routes/category/deleteCategory')(app)
+
 
 // On ajoute la gestion des erreurs
 app.use(({res}) => {

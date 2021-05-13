@@ -1,5 +1,6 @@
 const { Sequelize, DataTypes } = require('sequelize')
 const UserModel = require('../models/user')
+const CategoryModel = require('../models/category')
 
 
 const bcrypt = require('bcrypt')
@@ -14,6 +15,7 @@ const sequelize = new Sequelize('skillUp', 'root', '', {
 })
 
 const User = UserModel(sequelize, DataTypes)
+const Category = CategoryModel(sequelize, DataTypes)
 
 
   
@@ -26,6 +28,6 @@ const initDb = () => {
 }
   
 module.exports = { 
-  initDb, User
+  initDb, User, Category
 
 }
