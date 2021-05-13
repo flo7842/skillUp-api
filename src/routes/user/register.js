@@ -1,16 +1,15 @@
-const { User } = require('../db/sequelize')
+const { User } = require('../../db/sequelize')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const privateKey = require('../auth/private_key')
+const privateKey = require('../../auth/private_key')
 const { ValidationError, UniqueConstraintError, EmptyResultError } = require('sequelize')  
-const checkEmailAndPass = require('../middlewares/checkEmailAndPass')
+const checkEmailAndPass = require('../../middlewares/checkEmailAndPass')
+const checkPhoneNumber = require('../../middlewares/checkPhoneNumber')
 module.exports = (app) => {
-    app.post('/api/register', checkEmailAndPass, (req, res) => {
-       
-
-        // hash password
+    app.post('/api/register', checkEmailAndPass, checkPhoneNumber, (req, res) => {
         
         passwordHash = bcrypt.hashSync(req.body.user_password, 10);
+
         User.create({
             email: req.body.email,
             user_password: passwordHash,
@@ -29,8 +28,6 @@ module.exports = (app) => {
           
            { fields: ['email', 'user_password', 'firstname', 'lastname', 'avatar', 'yearsold', 'phone_number', 'num_rue', 'street_number', 'batiment', 'postal_code', 'street_name', 'dt_inscription', 'role'] }
 
-           
-          
           
           ).then(user => {
             
@@ -61,7 +58,7 @@ module.exports = (app) => {
             const message = `L'utilisateur n\'a pas pu être connecté. Réesayez dans quelques instants.`;
             return res.json({ message, data: error })
         })
-          // let's assume the default of isAdmin is false
+        
         
         
 

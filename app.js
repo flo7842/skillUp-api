@@ -19,8 +19,10 @@ app
 sequelize.initDb()
 
 // Here I place the endpoints
-require('./src/routes/register')(app)
-require('./src/routes/login')(app)
+require('./src/routes/user/updateUser')(app)
+require('./src/routes/user/deleteUser')(app)
+require('./src/routes/user/register')(app)
+require('./src/routes/user/login')(app)
 
 
 // On ajoute la gestion des erreurs
