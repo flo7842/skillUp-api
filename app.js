@@ -24,6 +24,11 @@ require('./src/routes/user/deleteUser')(app)
 require('./src/routes/user/register')(app)
 require('./src/routes/user/login')(app)
 
+require('./src/routes/user/forgotPassword')(app)
+require('./src/routes/user/resetPassword')(app)
+require('./src/routes/user/passwordReset')(app)
+require('./src/routes/user/resetPasswordIdToken')(app)
+
 require('./src/routes/category/createCategory')(app)
 require('./src/routes/category/deleteCategory')(app)
 
