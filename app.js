@@ -23,6 +23,8 @@ require('./src/routes/user/updateUser')(app)
 require('./src/routes/user/deleteUser')(app)
 require('./src/routes/user/register')(app)
 require('./src/routes/user/login')(app)
+require('./src/routes/user/createRole')(app)
+require('./src/routes/user/getUserByRole')(app)
 
 require('./src/routes/user/forgotPassword')(app)
 require('./src/routes/user/resetPassword')(app)

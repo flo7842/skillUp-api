@@ -1,25 +1,25 @@
-const { Category } = require('../../db/sequelize')
+const { Video } = require('../../db/sequelize')
 const auth = require('../../auth/auth')
 
 module.exports = (app) => {
-  app.put('/api/category/:id', auth, (req, res) => {
+  app.put('/api/video/:id', auth, (req, res) => {
     const id = req.params.id
-    Category.update(req.body, {
+    Video.update(req.body, {
       where: { id: id }
     })
     .then(_ => {
-      return Category.findByPk(id).then(category => {
-        if(category === null){
-          const message = `La catégorie demandé n'existe pas. Réesayez avec un autre identifiant`;
+      return Video.findByPk(id).then(video => {
+        if(video === null){
+          const message = `La video demandé n'existe pas. Réesayez avec un autre identifiant`;
           return res.status(404).json({message})
         }
-        const message = `La category ${category.name} a bien été modifié.`
-        res.json({message, data: category })
+        const message = `La video ${video.descripttion} a bien été modifié.`
+        res.json({message, data: video })
       })
     })
     .catch(error => {
       
-      const message = 'La catégorie n\'a pas pu être modifié. Réesayez dans quelques instants.'
+      const message = 'La vidéo n\'a pas pu être modifié. Réesayez dans quelques instants.'
       res.status(500).json({message, data: error})
     })
   })

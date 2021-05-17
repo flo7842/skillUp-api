@@ -1,27 +1,36 @@
-const { Category } = require('../../db/sequelize')
+const { Video } = require('../../db/sequelize')
 const auth = require('../../auth/auth')
 
 module.exports = (app) => {
-    app.post('/api/category', auth, (req, res) => {
+    app.post('/api/video', auth, (req, res) => {
         
-        Category.create({
-            name: req.body.name
+        Video.create({
+            url: req.body.url,
+            description: req.body.description,
+            image: req.body.image
           },
           
-           { fields: ['name'] }
+           { fields: ['url, description, image'] }
 
           
-          ).then(category => {
+          ).then(video => {
             
-            if(category.name.length === 0){
+            if(video.url.length === 0){
                 
-                const message = `Aucune valeur définis pour la catégoriee`;
+                const message = `Aucune valeur définis pour l'url de la video`;
+                return res.status(401).json({ message })
+
+            }
+
+            if(video.image.length === 0){
+                
+                const message = `Aucune valeur définis pour l'image de la video`;
                 return res.status(401).json({ message })
 
             }
 
     
-            const message = `La catégorie a été crée avec succès`;
+            const message = `La vidéo a été crée avec succès`;
             return res.json({ message })
 
           }).catch(error => {

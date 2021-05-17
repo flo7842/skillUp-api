@@ -1,22 +1,15 @@
 module.exports = (sequelize, DataTypes) => {
 
-    const Video = sequelize.define('Video', {
+    const Role = sequelize.define('Role', {
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
       },
-      description: {
+      name: {
         type: DataTypes.STRING,
-        allowNull: false,
-      },
-      image: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      url: {
-        type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
+        unique: true
       },
     },
      {
@@ -24,6 +17,6 @@ module.exports = (sequelize, DataTypes) => {
       createdAt: false,
       updatedAt: false
     })
-    return Video;
+    return Role;
   }
   

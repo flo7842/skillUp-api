@@ -1,3 +1,7 @@
+
+
+const moment= require('moment') 
+
 module.exports = (sequelize, DataTypes) => {
 
     const User = sequelize.define('User', {
@@ -32,16 +36,19 @@ module.exports = (sequelize, DataTypes) => {
       avatar: {
         type: DataTypes.STRING
       },
-      yearsold: {
-        type: DataTypes.INTEGER,
+      birth_date: {
+        type: DataTypes.DATEONLY,
         allowNull: false,
-        validate: {
-            min: 1,
-            max: 120,
-          },
+         get: function() {
+           return moment.utc(this.getDataValue('regDate')).format('DD-MM-YYYY');
+         },
       },
       phone_number: {
         type: DataTypes.STRING
+      },
+      street_name: {
+        type: DataTypes.STRING,
+        allowNull: false
       },
       street_number: {
         type: DataTypes.INTEGER,
@@ -54,23 +61,15 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false
       },
-      street_name: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      dt_inscription: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
-      },
-      role: {
-        type: DataTypes.ENUM(['user', 'admin'])
-      },
     },
      {
       timestamps: true,
-      createdAt: false,
-      updatedAt: false
+      createdAt: true,
+      updatedAt: true
     })
+
+    
+    
     return User;
   }
   

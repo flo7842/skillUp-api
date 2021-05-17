@@ -1,20 +1,26 @@
-const { User } = require('../../db/sequelize')
+const { User, UserRole, Role } = require('../../db/sequelize')
 const bcrypt = require('bcrypt')
 const { ValidationError } = require('sequelize')  
 const checkEmailAndPass = require('../../middlewares/checkEmailAndPass')
 const checkPhoneNumber = require('../../middlewares/checkPhoneNumber')
-module.exports = (app) => {
-    app.post('/api/register', checkEmailAndPass, checkPhoneNumber, (req, res) => {
-        
-        passwordHash = bcrypt.hashSync(req.body.user_password, 10);
 
+module.exports = (app) => {
+  let role;
+    app.post('/api/register', checkEmailAndPass, checkPhoneNumber, (req, res) => {
+        passwordHash = bcrypt.hashSync(req.body.user_password, 10);
+        Role.findByPk(1)
+      .then(rolename => {
+        
+        roleId = rolename.dataValues.id
+        
+      })
         User.create({
             email: req.body.email,
             user_password: passwordHash,
             firstname: req.body.firstname,
             lastname: req.body.lastname,
             avatar: req.body.avatar,
-            yearsold: req.body.yearsold,
+            birth_date: req.body.birth_date,
             phone_number: req.body.phone_number,
             street_number: req.body.street_number,
             batiment: req.body.batiment,
@@ -24,11 +30,17 @@ module.exports = (app) => {
             role: req.body.role
           },
           
-           { fields: ['email', 'user_password', 'firstname', 'lastname', 'avatar', 'yearsold', 'phone_number', 'num_rue', 'street_number', 'batiment', 'postal_code', 'street_name', 'dt_inscription', 'role'] }
+           { fields: ['email', 'user_password', 'firstname', 'lastname', 'avatar', 'birth_date', 'phone_number', 'num_rue', 'street_number', 'batiment', 'postal_code', 'street_name', 'dt_inscription', 'role'] }
 
           
           ).then(user => {
+
             
+            
+            const userHasRole = UserRole.create({
+              UserId: user.id,
+              RoleId: roleId,
+            })
             const message = `L'utilisateur a été crée avec succès`;
             return res.json({ message })
 

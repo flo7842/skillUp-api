@@ -1,20 +1,20 @@
-const { Category } = require('../../db/sequelize')
+const { Video } = require('../../db/sequelize')
 const auth = require('../../auth/auth')
   
 module.exports = (app) => {
-  app.delete('/api/category/:id', auth, (req, res) => {
-    Category.findByPk(req.params.id).then(category => {
-      if(category === null){
-        const message = `La catégorie demandé n'existe pas. Réesayez avec un autre identifiant`;
+  app.delete('/api/video/:id', auth, (req, res) => {
+    Video.findByPk(req.params.id).then(video => {
+      if(video === null){
+        const message = `La vidéo demandé n'existe pas. Réesayez avec un autre identifiant`;
         return res.status(404).json({message})
       }
-      const categoryDeleted = category;
-      return Category.destroy({
-        where: { id: category.id }
+      const videoDeleted = video;
+      return Video.destroy({
+        where: { id: video.id }
       })
       .then(_ => {
-        const message = `La catégorie ${categoryDeleted.name} a bien été supprimé.`
-        res.json({message, data: categoryDeleted })
+        const message = `La catégorie ${videoDeleted.url} a bien été supprimé.`
+        res.json({message, data: videoDeleted })
       })
       .catch(error => {
         const message = 'La catégorie n\'a pas pu être supprimé. Réesayez dans quelques instants.'
