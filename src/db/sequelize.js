@@ -43,12 +43,28 @@ Invoice.belongsTo(Company);
 Course.hasOne(Video);
 Video.belongsTo(Course);
 
+User.hasOne(Course);
+Course.belongsTo(User);
+
+// Invoice
+User.hasOne(Invoice);
+Invoice.belongsTo(User);
+Command.hasOne(Invoice);
+Invoice.belongsTo(Command);
+Company.hasOne(Invoice);
+Invoice.belongsTo(Company);
+
+
+// User Roles
 User.belongsToMany(Role, { through: UserRole});
 Role.belongsToMany(User, { through: UserRole});
 
 Course.belongsToMany(Category, { through: 'cour_category'});
 Category.belongsToMany(Course, { through: 'cour_category'});
 
+// Command
+User.hasOne(Command);
+Command.belongsTo(User);
 
 
 
@@ -56,11 +72,11 @@ Category.belongsToMany(Course, { through: 'cour_category'});
   
 const initDb = () => {
   
-  return sequelize.sync({force: true}).then(_ => {
+  // return sequelize.sync({force: true}).then(_ => {
     
     
-    console.log('La base de donnée a bien été initialisée !')
-  })
+  //   console.log('La base de donnée a bien été initialisée !')
+  // })
 }
   
 module.exports = { 

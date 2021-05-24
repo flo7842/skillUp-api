@@ -11,17 +11,17 @@ module.exports = (app) => {
            { fields: ['name'] }
 
           
-          ).then(category => {
+          ).then(role => {
             
            
     
-            const message = `La catégorie a été crée avec succès`;
+            const message = `Le role ${role.name} a été crée avec succès`;
             return res.json({ message })
 
           }).catch(error => {
             
             
-            const message = `L'utilisateur n\'a pas pu être connecté. Réesayez dans quelques instants.`;
+            const message = `Le role n\'a pas pu être crée. Réesayez dans quelques instants.`;
             return res.json({ message, data: error })
         })
         
