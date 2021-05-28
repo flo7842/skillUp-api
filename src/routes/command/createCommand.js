@@ -19,7 +19,7 @@ module.exports = (app) => {
             
 
     
-            const message = `La commande a été crée avec succès`;
+            const message = `La commande a été crée avec succès. Id commande ${command.id}`;
             return res.json({ message })
 
           }).catch(error => {

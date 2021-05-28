@@ -35,6 +35,7 @@ require('./src/routes/category/createCategory')(app)
 require('./src/routes/category/deleteCategory')(app)
 
 require('./src/routes/course/createCourse')(app)
+require('./src/routes/course/findAllCourses')(app)
 
 require('./src/routes/command/createCommand')(app)
 require('./src/routes/command/findAllCommands')(app)

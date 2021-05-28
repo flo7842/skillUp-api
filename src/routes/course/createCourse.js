@@ -11,12 +11,11 @@ module.exports = (app) => {
             image: req.body.image,
             rate: req.body.rate,
             price: req.body.price,
-            tax: req.body.tax,
             datePublish: req.body.datePublish,
             UserId: req.body.UserId
           },
           
-           { fields: ['author', 'title', 'description', 'image', 'rate', 'price', 'tax', 'datePublish', 'UserId'] }
+           { fields: ['author', 'title', 'description', 'image', 'rate', 'price', 'datePublish', 'UserId'] }
 
           
           ).then(course => {
