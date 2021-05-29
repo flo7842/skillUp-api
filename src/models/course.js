@@ -29,12 +29,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      tax: {
-        type: DataTypes.FLOAT,
-        allowNull: false,
-      },
       datePublish: {
-        type: DataTypes.STRING
+        type: DataTypes.DATE
       },
 
     },

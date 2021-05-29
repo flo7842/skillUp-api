@@ -38,6 +38,7 @@ require('./src/routes/course/createCourse')(app)
 require('./src/routes/course/findAllCourses')(app)
 
 require('./src/routes/command/createCommand')(app)
+require('./src/routes/command/deleteCommand')(app)
 require('./src/routes/command/findAllCommands')(app)
 
 require('./src/routes/command/createCommandLine')(app)
@@ -48,6 +49,8 @@ require('./src/routes/company/findCompanyByPk')(app)
 require('./src/routes/company/createCompany')(app)
 require('./src/routes/company/updateCompany')(app)
 require('./src/routes/company/deleteCompany')(app)
+
+require('./src/routes/invoice/createInvoice')(app)
 
 // On ajoute la gestion des erreurs
 app.use(({res}) => {

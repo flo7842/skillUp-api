@@ -20,12 +20,18 @@ module.exports = (app) => {
           
           ).then(course => {
             
-            // if(course.name.length === 0){
+            if(course.author.length === 0){
                 
-            //     const message = `Aucune valeur définis pour la catégoriee`;
-            //     return res.status(401).json({ message })
+                const message = 'Aucune valeur définis pour l\'auteur du cour';
+                return res.status(401).json({ message })
 
-            // }
+            }
+            if(course.title.length === 0){
+                
+                const message = 'Aucune valeur définis pour le titre du cour';
+                return res.status(401).json({ message })
+
+            }
 
     
             const message = `Le cour a été crée avec succès`;
@@ -33,7 +39,7 @@ module.exports = (app) => {
 
           }).catch(error => {
             
-           
+           console.log(error)
             const message = `Le cour n\'a pas pu être crée. Réesayez dans quelques instants.`;
             return res.json({ message, data: error })
         })

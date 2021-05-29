@@ -4,6 +4,7 @@ const auth = require('../../auth/auth')
 module.exports = (app) => {
     app.post('/api/commandline', (req, res) => {
       console.log(req.body)
+      
       Command_line.create({
          
             quantity: req.body.quantity,

@@ -32,7 +32,7 @@ const Invoice = InvoiceModel(sequelize, DataTypes)
 const Command = CommandModel(sequelize, DataTypes)
 const Command_line = Command_lineModel(sequelize, DataTypes)
 
-Command.hasOne(Command_line);
+Command.hasMany(Command_line, { onDelete: 'cascade' });
 Command_line.belongsTo(Command);
 Course.hasOne(Command_line);
 Command_line.belongsTo(Course);

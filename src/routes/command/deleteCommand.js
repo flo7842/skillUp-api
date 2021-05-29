@@ -13,8 +13,8 @@ module.exports = (app) => {
         where: { id: command.id }
       })
       .then(_ => {
-        const message = `La commande ${commandDeleted.name} a bien été supprimée.`
-        res.json({message, data: companyDeleted })
+        const message = `La commande ${commandDeleted.id} a bien été supprimée.`
+        res.json({message, data: commandDeleted })
       })
       .catch(error => {
         const message = 'La commande n\'a pas pu être supprimé. Réesayez dans quelques instants.'

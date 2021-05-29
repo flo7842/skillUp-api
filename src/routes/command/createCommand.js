@@ -4,7 +4,7 @@ const auth = require('../../auth/auth')
 
 module.exports = (app) => {
     app.post('/api/command', (req, res) => {
-      console.log(req.body)
+      
         Command.create({
          
             taxe: req.body.taxe,
@@ -19,8 +19,8 @@ module.exports = (app) => {
             
 
     
-            const message = `La commande a été crée avec succès. Id commande ${command.id}`;
-            return res.json({ message })
+            const message = `La commande a été crée avec succès.`;
+            return res.json({ message, data: command })
 
           }).catch(error => {
             
