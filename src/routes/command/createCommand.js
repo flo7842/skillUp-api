@@ -20,7 +20,8 @@ module.exports = (app) => {
 
     
             const message = `La commande a été crée avec succès.`;
-            return res.json({ message, data: command })
+            return res.status(201).json({message: message, data: command})
+            
 
           }).catch(error => {
             

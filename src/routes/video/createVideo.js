@@ -31,7 +31,7 @@ module.exports = (app) => {
 
     
             const message = `La vidéo a été crée avec succès`;
-            return res.json({ message })
+            return res.status(201).json({message: message})
 
           }).catch(error => {
             

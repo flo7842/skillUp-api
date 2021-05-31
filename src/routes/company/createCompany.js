@@ -28,7 +28,7 @@ module.exports = (app) => {
 
     
             const message = `L'entreprise a été crée avec succès`;
-            return res.json({ message })
+            return res.status(201).json({message: message})
 
           }).catch(error => {
             

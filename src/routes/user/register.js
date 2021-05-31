@@ -42,7 +42,7 @@ module.exports = (app) => {
               RoleId: roleId,
             })
             const message = `L'utilisateur a été crée avec succès`;
-            return res.json({ message })
+            return res.status(201).json({message: message, data: user})
 
           }).catch(error => {
             

@@ -22,7 +22,7 @@ module.exports = (app) => {
 
     
             const message = `La catégorie a été crée avec succès`;
-            return res.json({ message })
+            return res.status(201).json({message: message})
 
           }).catch(error => {
             
