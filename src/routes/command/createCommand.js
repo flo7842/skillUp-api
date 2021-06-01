@@ -6,12 +6,10 @@ module.exports = (app) => {
     app.post('/api/command', (req, res) => {
       
         Command.create({
-         
-            taxe: req.body.taxe,
             UserId: req.body.UserId
           },
           
-           { fields: ['taxe', 'UserId'] }
+           { fields: ['UserId'] }
 
           
           ).then(command => {

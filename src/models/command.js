@@ -8,10 +8,6 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
             autoIncrement: true
           },
-          taxe: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-          },
     },
      {
       timestamps: true,

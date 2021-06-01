@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true
       },
-      invoiceDate: {
+      invoice_date: {
         type: DataTypes.STRING,
         allowNull: false,
       },
