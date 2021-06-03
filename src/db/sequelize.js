@@ -72,11 +72,11 @@ Command.belongsTo(User);
   
 const initDb = () => {
   
-  return sequelize.sync({force: true}).then(_ => {
+  // return sequelize.sync({force: true}).then(_ => {
     
     
-    console.log('La base de donnée a bien été initialisée !')
-  })
+  //   console.log('La base de donnée a bien été initialisée !')
+  // })
 }
   
 module.exports = { 

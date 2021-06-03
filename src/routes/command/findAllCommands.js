@@ -1,4 +1,4 @@
-const { Command } = require('../../db/sequelize')
+const { Command, User } = require('../../db/sequelize')
 const { Op } = require('sequelize') 
 const auth = require('../../auth/auth')
 

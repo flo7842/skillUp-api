@@ -38,9 +38,12 @@ require('./src/routes/course/createCourse')(app)
 require('./src/routes/course/findCourseByPk')(app)
 require('./src/routes/course/findAllCourses')(app)
 
+
 require('./src/routes/command/createCommand')(app)
 require('./src/routes/command/deleteCommand')(app)
 require('./src/routes/command/findAllCommands')(app)
+require('./src/routes/command/findAllCommandByUser')(app)
+require('./src/routes/command/findAllCommandLineByCommand')(app)
 
 require('./src/routes/command/createCommandLine')(app)
 
