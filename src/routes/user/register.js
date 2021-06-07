@@ -6,7 +6,7 @@ const checkPhoneNumber = require('../../middlewares/checkPhoneNumber')
 
 module.exports = (app) => {
   let role;
-    app.post('/api/register', checkEmailAndPass, checkPhoneNumber, (req, res) => {
+    app.post('/api/register', checkEmailAndPass, (req, res) => {
         passwordHash = bcrypt.hashSync(req.body.user_password, 10);
         Role.findByPk(1)
       .then(rolename => {
@@ -17,6 +17,7 @@ module.exports = (app) => {
         User.create({
             email: req.body.email,
             user_password: passwordHash,
+            user_name: req.body.user_name,
             firstname: req.body.firstname,
             lastname: req.body.lastname,
             avatar: req.body.avatar,
@@ -30,7 +31,7 @@ module.exports = (app) => {
             role: req.body.role
           },
           
-           { fields: ['email', 'user_password', 'firstname', 'lastname', 'avatar', 'birth_date', 'phone_number', 'num_rue', 'street_number', 'batiment', 'postal_code', 'street_name', 'dt_inscription', 'role'] }
+           { fields: ['email', 'user_password', 'user_name', 'firstname', 'lastname', 'avatar', 'birth_date', 'phone_number', 'num_rue', 'street_number', 'batiment', 'postal_code', 'street_name', 'dt_inscription', 'role'] }
 
           
           ).then(user => {

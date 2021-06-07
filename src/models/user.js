@@ -25,41 +25,52 @@ module.exports = (sequelize, DataTypes) => {
             msg:"Le mot de passe ne peut pas être inférieur à 4 caractères"
        }
       },
+      user_name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: {
+          msg: "Le pseudo est déjà pris, réesayez avec un autre pseudo"
+        }
+      },
       firstname: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
       },
       lastname: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
       },
       avatar: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: true,
+        defaultValue: "https://avataaars.io/?avatarStyle=Circle&topType=LongHairStraight&accessoriesType=Blank&hairColor=BrownDark&facialHairType=Blank&clotheType=BlazerShirt&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Light'"
       },
       birth_date: {
         type: DataTypes.DATEONLY,
-        allowNull: false,
+        allowNull: true,
          get: function() {
            return moment.utc(this.getDataValue('regDate')).format('DD-MM-YYYY');
          },
       },
       phone_number: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: true,
       },
       street_name: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true,
       },
       street_number: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: true,
       },
       batiment: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: true,
       },
       postal_code: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true,
       },
     },
      {
