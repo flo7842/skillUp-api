@@ -43,8 +43,6 @@ Invoice.belongsTo(Company);
 Course.hasOne(Video);
 Video.belongsTo(Course);
 
-User.hasOne(Course);
-Course.belongsTo(User);
 
 // Invoice
 User.hasOne(Invoice);

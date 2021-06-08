@@ -14,9 +14,12 @@ const port = 3000
 
 app
 .use(cors())
-.use(morgan('dev'))
 .use(bodyParser.json())
 sequelize.initDb()
+
+app.get('/', (req, res) => {
+    res.json('Hello Man !')
+})
 
 // Here I place the endpoints
 require('./src/routes/user/updateUser')(app)
@@ -37,6 +40,7 @@ require('./src/routes/category/deleteCategory')(app)
 require('./src/routes/course/createCourse')(app)
 require('./src/routes/course/findCourseByPk')(app)
 require('./src/routes/course/findAllCourses')(app)
+require('./src/routes/course/getBestsTuto')(app)
 
 
 require('./src/routes/command/createCommand')(app)

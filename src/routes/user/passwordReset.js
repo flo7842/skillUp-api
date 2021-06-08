@@ -31,8 +31,8 @@ module.exports = (app) => {
                 port: 25,
                 secure: false, // true for 465, false for other ports
                 auth: {
-                  user: "florian_bracq@hotmail.fr", // generated ethereal user
-                  pass: "UltrasKopNord7842**", // generated ethereal password
+                  user: "florian_bracq@hotmail.fr",
+                  pass: process.env.PASSWORD_MAIL // generated ethereal user
                 },
             });
 
