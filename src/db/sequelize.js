@@ -12,14 +12,29 @@ const Command_lineModel = require('../models/command_line')
 
 const bcrypt = require('bcrypt')
   
-const sequelize = new Sequelize('skillUp', 'root', '', {
-  host: 'localhost',
-  dialect: 'mariadb',
-  dialectOptions: {
-    timezone: 'Etc/GMT-2',
-  },
-  logging: false
-})
+let sequelize
+
+if(process.env.NODE_ENV === 'production'){
+
+  sequelize = new Sequelize('ng0xvcq68hpae8sj', 'gnzmpznlouhu91ke', 'ao0utgixof4xdemg', {
+    host: 'u3r5w4ayhxzdrw87.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+    dialect: 'mariadb',
+    dialectOptions: {
+      timezone: 'Etc/GMT-2',
+    },
+    logging: true
+  })
+}else{
+
+  sequelize = new Sequelize('skillUp', 'root', '', {
+    host: 'localhost',
+    dialect: 'mariadb',
+    dialectOptions: {
+      timezone: 'Etc/GMT-2',
+    },
+    logging: false
+  })
+}
 
 const User = UserModel(sequelize, DataTypes)
 const Category = CategoryModel(sequelize, DataTypes)
@@ -70,11 +85,11 @@ Command.belongsTo(User);
   
 const initDb = () => {
   
-  // return sequelize.sync({force: true}).then(_ => {
+  return sequelize.sync().then(_ => {
     
     
-  //   console.log('La base de donnée a bien été initialisée !')
-  // })
+    console.log('La base de donnée a bien été initialisée !')
+  })
 }
   
 module.exports = { 
