@@ -1,5 +1,4 @@
 const express = require('express')
-const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const favicon = require('serve-favicon')
 const sequelize = require('./src/db/sequelize')
@@ -16,7 +15,7 @@ app
 .use(cors())
 .use(bodyParser.json())
 sequelize.initDb()
-
+require('dotenv').config({path: __dirname + '/.env'})
 app.get('/', (req, res) => {
     res.json('Hello Man !')
 })
@@ -41,6 +40,7 @@ require('./src/routes/course/createCourse')(app)
 require('./src/routes/course/findCourseByPk')(app)
 require('./src/routes/course/findAllCourses')(app)
 require('./src/routes/course/getBestsTuto')(app)
+require('./src/routes/course/getRecentCourses')(app)
 
 
 require('./src/routes/command/createCommand')(app)

@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken')
 
 module.exports = (app) => {
    
+    
     app.post('/api/passwordreset', function (req, res) {
         
             var emailAddress = req.body.email;
@@ -19,12 +20,12 @@ module.exports = (app) => {
             };
 
             
-            var secret = user.user_password + '- 12345';
+            var secret = user.user_password + process.env['PRIVATE_KEY_TOKEN_MAIL'];
           
 
             var token = jwt.sign(payload, secret, { expiresIn: '5m' });
             
-
+            console.log(process.env.PASSWORD_MAIL)
 
             let transporter = nodemailer.createTransport({
                 host: "smtp.live.com",
@@ -32,7 +33,7 @@ module.exports = (app) => {
                 secure: false, // true for 465, false for other ports
                 auth: {
                   user: "florian_bracq@hotmail.fr",
-                  pass: process.env.PASSWORD_MAIL // generated ethereal user
+                  pass: process.env['PASSWORD_MAIL'] // generated ethereal user
                 },
             });
 
