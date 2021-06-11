@@ -14,7 +14,7 @@ const bcrypt = require('bcrypt')
   
 let sequelize
 
-if(process.env.NODE_ENV === 'production'){
+if(process.env.NODE_ENV == 'production'){
 
   sequelize = new Sequelize('ng0xvcq68hpae8sj', 'gnzmpznlouhu91ke', 'ao0utgixof4xdemg', {
     host: 'u3r5w4ayhxzdrw87.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
