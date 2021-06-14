@@ -1,4 +1,5 @@
 
+const moment= require('moment') 
 
 module.exports = (sequelize, DataTypes) => {
 
@@ -11,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     },
      {
       timestamps: true,
-      createdAt: false,
+      createdAt: true,
       updatedAt: false
     })
 

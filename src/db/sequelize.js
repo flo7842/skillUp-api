@@ -12,11 +12,11 @@ const Command_lineModel = require('../models/command_line')
 
 const bcrypt = require('bcrypt')
   
-let sequelize
+let sequelizeDb
 
-if(process.env.NODE_ENV == 'production'){
+if(process.env.NODE_ENV === 'production'){
 
-  sequelize = new Sequelize('ng0xvcq68hpae8sj', 'gnzmpznlouhu91ke', 'ao0utgixof4xdemg', {
+  sequelizeDb = new Sequelize('ng0xvcq68hpae8sj', 'gnzmpznlouhu91ke', 'ao0utgixof4xdemg', {
     host: 'u3r5w4ayhxzdrw87.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
     dialect: 'mariadb',
     dialectOptions: {
@@ -26,7 +26,7 @@ if(process.env.NODE_ENV == 'production'){
   })
 }else{
 
-  sequelize = new Sequelize('skillUp', 'root', '', {
+  sequelizeDb = new Sequelize('skillUp', 'root', '', {
     host: 'localhost',
     dialect: 'mariadb',
     dialectOptions: {
@@ -36,16 +36,16 @@ if(process.env.NODE_ENV == 'production'){
   })
 }
 
-const User = UserModel(sequelize, DataTypes)
-const Category = CategoryModel(sequelize, DataTypes)
-const Course = CourseModel(sequelize, DataTypes)
-const Video = VideoModel(sequelize, DataTypes)
-const Role = RoleModel(sequelize, DataTypes)
-const UserRole = USERROLEModel(sequelize, DataTypes)
-const Company = CompanyModel(sequelize, DataTypes)
-const Invoice = InvoiceModel(sequelize, DataTypes)
-const Command = CommandModel(sequelize, DataTypes)
-const Command_line = Command_lineModel(sequelize, DataTypes)
+const User = UserModel(sequelizeDb, DataTypes)
+const Category = CategoryModel(sequelizeDb, DataTypes)
+const Course = CourseModel(sequelizeDb, DataTypes)
+const Video = VideoModel(sequelizeDb, DataTypes)
+const Role = RoleModel(sequelizeDb, DataTypes)
+const UserRole = USERROLEModel(sequelizeDb, DataTypes)
+const Company = CompanyModel(sequelizeDb, DataTypes)
+const Invoice = InvoiceModel(sequelizeDb, DataTypes)
+const Command = CommandModel(sequelizeDb, DataTypes)
+const Command_line = Command_lineModel(sequelizeDb, DataTypes)
 
 Command.hasMany(Command_line, { onDelete: 'cascade' });
 Command_line.belongsTo(Command);
@@ -60,8 +60,6 @@ Video.belongsTo(Course);
 
 
 // Invoice
-User.hasOne(Invoice);
-Invoice.belongsTo(User);
 Command.hasOne(Invoice);
 Invoice.belongsTo(Command);
 Company.hasOne(Invoice);
@@ -85,7 +83,7 @@ Command.belongsTo(User);
   
 const initDb = () => {
   
-  return sequelize.sync().then(_ => {
+  return sequelizeDb.sync().then(_ => {
     
     
     console.log('La base de donnée a bien été initialisée !')
@@ -93,5 +91,5 @@ const initDb = () => {
 }
   
 module.exports = { 
-  initDb, User, Category, Course, Video, Role, UserRole, Company, Invoice, Command_line, Command
+  initDb, User, Category, Course, Video, Role, UserRole, Company, Invoice, Command_line, Command, sequelizeDb
 }

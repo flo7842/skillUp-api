@@ -6,10 +6,6 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true
       },
-      invoice_date: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
       payment_method: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -17,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     },
      {
       timestamps: true,
-      createdAt: false,
+      createdAt: true,
       updatedAt: false
     })
     return Invoice;
