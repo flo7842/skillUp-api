@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken')
 
 
 module.exports = (app) => {
+  console.log(bcrypt.hashSync("Kopnord784210", 10))
   app.post('/api/login', (req, res) => {
   
     User.findOne({ where: { email: req.body.email } }).then(user => {
@@ -13,21 +14,21 @@ module.exports = (app) => {
             return res.status(404).json({ message })
         }
         bcrypt.compare(req.body.user_password, user.user_password).then(isPasswordValid => {
-        if(!isPasswordValid) {
-          const message = `Le mot de passe est incorrect.`;
-          return res.status(401).json({ message })
-        }
+          if(!isPasswordValid) {
+            const message = `Le mot de passe est incorrect.`;
+            return res.status(401).json({ message })
+          }
         
 
-        // JWT
-        const token = jwt.sign(
-            { userId: user.id },
-            process.env['PRIVATE_KEY_TOKEN'],
-            { expiresIn: '24h' }
-        )
+          // JWT
+          const token = jwt.sign(
+              { userId: user.id },
+              process.env['PRIVATE_KEY_TOKEN'],
+              { expiresIn: '24h' }
+          )
 
-        const message = `L'utilisateur a été connecté avec succès`;
-        return res.json({ message, data: user, token })
+          const message = `L'utilisateur a été connecté avec succès`;
+          return res.json({ message, data: user, token })
         })
     })
     .catch(error => {

@@ -5,14 +5,13 @@ module.exports = (app) => {
     app.post('/api/invoice', (req, res) => {
         
         Invoice.create({
-            invoice_date: req.body.invoice_date,
             payment_method: req.body.payment_method,
             CompanyId: req.body.CompanyId,
             UserId: req.body.UserId,
             CommandId: req.body.CommandId
           },
           
-           { fields: ['invoice_date', 'payment_method', 'CompanyId', 'UserId', 'CommandId'] }
+           { fields: ['payment_method', 'CompanyId', 'UserId', 'CommandId'] }
 
           
           ).then(invoice => {
