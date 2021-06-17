@@ -10,7 +10,7 @@ module.exports = (app) => {
         .then(user => {
            
            
-            var secret = user.user_password + '- 12345';
+            var secret = user.user_password + process.env['PRIVATE_KEY_TOKEN_MAIL'];
             const decodedToken = jwt.verify(req.params.token, secret, (error, decodedToken) => {
                 
                 if(error) {

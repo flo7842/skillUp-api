@@ -15,15 +15,11 @@ module.exports = (app) => {
           return res.status(404).json({message})
         }
 
-        passwordHash = bcrypt.hashSync(req.body.user_password, 10);
-
 
         const message = `L'utilisateur ${user.email} a bien été modifié.`
 
-        user.user_password = passwordHash
         user.update({
             email: user.email,
-            user_password: passwordHash,
             user_name: user.user_name,
             firstname: user.firstname,
             lastname: user.lastname,

@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const favicon = require('serve-favicon')
 const sequelize = require('./src/db/sequelize')
 const cors = require('cors')
-
+var path = require('path');
 
 
 const app = express()
@@ -13,8 +13,9 @@ const port = process.env.PORT || 3000
 app
 .use(cors())
 .use(bodyParser.json())
-sequelize.initDb()
+.use(express.static(path.join(__dirname, 'public')));
 require('dotenv').config({path: __dirname + '/.env'})
+sequelize.initDb()
 app.get('/', (req, res) => {
     res.json('Hello Man !')
 })
