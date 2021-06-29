@@ -36,14 +36,15 @@ require('./src/routes/user/resetPasswordIdToken')(app)
 
 require('./src/routes/category/createCategory')(app)
 require('./src/routes/category/deleteCategory')(app)
+require('./src/routes/category/findAllCoursesByCategory')(app)
 
 require('./src/routes/course/createCourse')(app)
 require('./src/routes/course/findCourseByPk')(app)
 require('./src/routes/course/findAllCourses')(app)
-require('./src/routes/course/findAllCoursesByUser')(app)
 require('./src/routes/course/getBestsTuto')(app)
 require('./src/routes/course/getRecentCourses')(app)
-
+require('./src/routes/course/getCategoriesByCourse')(app)
+require('./src/routes/course/findAllCoursesByUser')(app)
 
 require('./src/routes/command/createCommand')(app)
 require('./src/routes/command/deleteCommand')(app)
@@ -54,6 +55,7 @@ require('./src/routes/command/findAllCommandLineByCommand')(app)
 require('./src/routes/command/createCommandLine')(app)
 
 require('./src/routes/video/createVideo')(app)
+require('./src/routes/video/findAllVideosByCourse')(app)
 
 require('./src/routes/company/findCompanyByPk')(app)
 require('./src/routes/company/createCompany')(app)
@@ -61,6 +63,7 @@ require('./src/routes/company/updateCompany')(app)
 require('./src/routes/company/deleteCompany')(app)
 
 require('./src/routes/invoice/createInvoice')(app)
+require('./src/routes/invoice/findInvoiceByUser')(app)
 
 // On ajoute la gestion des erreurs
 app.use(({res}) => {

@@ -27,8 +27,8 @@ module.exports = (app) => {
               { expiresIn: '24h' }
           )
 
-          const message = `L'utilisateur a été connecté avec succès`;
-          return res.json({ message, data: user, token })
+         // const message = ``;
+          return res.json({ success: 'L\'utilisateur a été connecté avec succès', data: user, token })
         })
     })
     .catch(error => {
