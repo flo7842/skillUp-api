@@ -1,18 +1,35 @@
 const express = require('express')
+const session = require('express-session');
 const bodyParser = require('body-parser')
 const favicon = require('serve-favicon')
 const sequelize = require('./src/db/sequelize')
 const cors = require('cors')
 var path = require('path');
-
+var fs = require('fs')
+var morgan = require('morgan')
+const helmet = require("helmet");
 
 const app = express()
 const port = process.env.PORT || 3000
+var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
 
 
 app
 .use(cors())
 .use(bodyParser.json())
+.use(express.json({ limite : '10kb' }))
+.use(morgan('combined', { stream: accessLogStream }))
+.use(helmet())
+app.use(session({
+    saveUninitialized: true,
+    resave: true,
+    secret: process.env['SECRET_SESSION'],
+    cookie: {
+        httpOnly: true,
+        secure: true
+    }
+})
+)
 .use(express.static(path.join(__dirname, 'public')));
 require('dotenv').config({path: __dirname + '/.env'})
 sequelize.initDb()
