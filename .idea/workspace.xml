@@ -2,11 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="94e0de16-167f-4146-9ba0-0b9552cbbabe" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/db/sequelize.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/sequelize.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/user/passwordReset.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/user/passwordReset.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/user/resetPassword.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/user/resetPassword.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/user/updateUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/user/updateUser.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/user/udpateImgUser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db/requete.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/requete.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/command/createCommand.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/command/createCommand.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/command/createCommandLine.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/command/createCommandLine.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/command/findAllCommands.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/command/findAllCommands.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/company/createCompany.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/company/createCompany.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/course/createCourse.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/course/createCourse.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/invoice/createInvoice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/invoice/createInvoice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/user/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/user/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/user/updatePassword.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/user/updatePassword.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +37,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../symfony-symbnb" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -42,6 +51,8 @@
       <updated>1623845172842</updated>
       <workItem from="1623845177138" duration="713000" />
       <workItem from="1623846692054" duration="892000" />
+      <workItem from="1625661600876" duration="45000" />
+      <workItem from="1627824318869" duration="10000" />
     </task>
     <servers />
   </component>

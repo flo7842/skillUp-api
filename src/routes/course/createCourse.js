@@ -35,7 +35,7 @@ module.exports = (app) => {
 
     
             const message = `Le cour a été crée avec succès`;
-            return res.status(201).json({message: message})
+            return res.status(201).json({message: message, data: course})
 
           }).catch(error => {
             

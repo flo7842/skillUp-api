@@ -4,14 +4,14 @@ const jwt = require('jsonwebtoken')
 
 
 module.exports = (app) => {
-  console.log(bcrypt.hashSync("Kopnord784210", 10))
+  
   app.post('/api/login', (req, res) => {
   
     User.findOne({ where: { email: req.body.email } }).then(user => {
       
         if(!user){
             const message = "L'utilisateur demandé n'existe pas."
-            return res.status(404).json({ message })
+            return res.status(401).json({ message })
         }
         bcrypt.compare(req.body.user_password, user.user_password).then(isPasswordValid => {
           if(!isPasswordValid) {
