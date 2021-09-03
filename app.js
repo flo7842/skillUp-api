@@ -20,16 +20,6 @@ app
 .use(express.json({ limite : '10kb' }))
 .use(morgan('combined', { stream: accessLogStream }))
 .use(helmet())
-app.use(session({
-    saveUninitialized: true,
-    resave: true,
-    secret: process.env['SECRET_SESSION'],
-    cookie: {
-        httpOnly: true,
-        secure: true
-    }
-})
-)
 .use(express.static(path.join(__dirname, 'public')));
 require('dotenv').config({path: __dirname + '/.env'})
 sequelize.initDb()
