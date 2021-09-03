@@ -1,4 +1,6 @@
 const { Sequelize, DataTypes, model } = require('sequelize')
+require('dotenv').config({path: '\.env'})
+
 const UserModel = require('../models/user')
 const CategoryModel = require('../models/category')
 const CourseModel = require('../models/course')
@@ -16,8 +18,8 @@ let sequelizeDb
 
 if(process.env.NODE_ENV === 'production'){
 
-  sequelizeDb = new Sequelize('ng0xvcq68hpae8sj', 'gnzmpznlouhu91ke', 'ao0utgixof4xdemg', {
-    host: 'u3r5w4ayhxzdrw87.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+  sequelizeDb = new Sequelize(process.env['MYSQL_DB_NAME'], process.env['MYSQL_DB_USER'], process.env['MYSQL_DB_PASSWORD'], {
+    host: 'localhost',
     dialect: 'mariadb',
     dialectOptions: {
       timezone: 'Etc/GMT-2',
@@ -26,7 +28,7 @@ if(process.env.NODE_ENV === 'production'){
   })
 }else{
 
-  sequelizeDb = new Sequelize('skillUp', 'root', '', {
+  sequelizeDb = new Sequelize(process.env['MYSQL_DB_NAME_LOCAL'], process.env['MYSQL_DB_USER_LOCAL'], process.env['MYSQL_DB_PASSWORD_LOCAL'], {
     host: 'localhost',
     dialect: 'mariadb',
     dialectOptions: {

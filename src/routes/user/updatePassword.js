@@ -1,9 +1,8 @@
 const { User } = require('../../db/sequelize')
 const { ValidationError, UniqueConstraintError } = require('sequelize')  
-const auth = require('../../auth/auth')
 const bcrypt = require('bcrypt')
 module.exports = (app) => {
-  app.put('/api/reset-password-modify/:id', auth, (req, res) => {
+  app.put('/api/reset-password-modify/:id',(req, res) => {
 
     return User.findByPk(req.params.id).then(async user => {
         if(user == null){

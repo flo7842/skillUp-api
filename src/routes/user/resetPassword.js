@@ -9,6 +9,7 @@ var jsonParser = bodyParser.json()
 
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 const template = require('../../../public/templatePassword')
+const templateValidate = require('../../../public/templatePasswordValidate')
 
 
 module.exports = (app) => {
@@ -19,7 +20,7 @@ module.exports = (app) => {
         .then(async user => {
            
 
-            var secret = user.user_password + '- 12345';
+            var secret = user.user_password + process.env['PRIVATE_KEY_TOKEN_MAIL'];
             
             //var payload = jwt.decode(req.body.token, secret);
             const decodedToken = jwt.verify(req.body.token, secret, (error, decodedToken) => {
@@ -37,7 +38,7 @@ module.exports = (app) => {
                         user.update({
                             user_password: passwordHash
                           })
-                          res.send('Votre mot de passe a été correctement modifié.');
+                          res.send(templateValidate());
                     }else{
                         res.send('Les deux mots de passe ne sont pas identiques veuillez réesayer.'+ template(decodedToken.id, req.body.token));
                     }
