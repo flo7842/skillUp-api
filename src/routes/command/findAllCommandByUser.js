@@ -1,22 +1,22 @@
 const { Command, User } = require('../../db/sequelize')
 const { Op } = require('sequelize') 
 const auth = require('../../auth/auth')
+const { QueryTypes } = require('sequelize');
+const { queryMaker } = require('../../db/requete');
 
 module.exports = (app) => {
-  app.get('/api/commands/:id', auth, (req, res) => {
-    Command.findAll({
-        where: {
-            UserId: req.params.id
-          },
-          include: User
-        })
-        .then(user => {
-          const message = 'La liste des commandes de l\'utilisateur a bien été récupérée.'
-          res.json({ message, data: user })
-        })
-        .catch(error => {
-          const message = 'La liste des commandes de l\'utilisateur n\'a pas pu être récupérée. Réessayez dans quelques instants.'
-          res.status(500).json({ message, data: error })
-        })
+  app.get('/api/commands/:id', auth, async (req, res) => {
+    
+    await queryMaker("SELECT", "Commands.id AS commandId, Commands.createdAt, Courses.title, Courses.price, Invoices.id as invoiceId", "Commands", "INNER JOIN Users ON Commands.UserId = Users.id "+
+      "INNER JOIN Command_lines ON Commands.id = Command_lines.CommandId "+
+      "INNER JOIN Courses ON Courses.id = Command_lines.CourseId " +
+      "INNER JOIN Invoices ON Commands.id = Invoices.CommandId", "WHERE","Users.id = " + req.params.id, req.params.id, QueryTypes.SELECT).then(user => {
+  
+      const message = 'Les commandes de l\'utilisateur ont bien été récupérés.'
+    
+      res.json({ message, data: user })
+    }).catch(err =>{
+      console.log(err)
+    })
   })
 }

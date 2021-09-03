@@ -15,7 +15,7 @@ module.exports = (app) => {
           ).then(command => {
             
             
-            console.log(command)
+          
             const message = `La commande a été crée avec succès.`;
             return res.status(201).json({message: message, data: command})
             

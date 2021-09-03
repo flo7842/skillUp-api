@@ -2,10 +2,8 @@ const { User } = require('../../db/sequelize')
 const { ValidationError, UniqueConstraintError } = require('sequelize')  
 const auth = require('../../auth/auth')
 const bcrypt = require('bcrypt')
-const checkPhoneNumber = require('../../middlewares/checkPhoneNumber')
-
 module.exports = (app) => {
-  app.put('/api/user/:id', auth, checkPhoneNumber, (req, res) => {
+  app.put('/api/update-img/:id', auth, (req, res) => {
     const id = req.params.id
     User.update(req.body, {
       where: { id: id }
@@ -21,19 +19,9 @@ module.exports = (app) => {
         const message = `L'utilisateur ${user.email} a bien été modifié.`
 
         user.update({
-            email: user.email,
-            user_name: user.user_name,
-            firstname: user.firstname,
-            lastname: user.lastname,
+            
             avatar: user.avatar,
-            birth_date: user.birth_date,
-            phone_number: user.phone_number,
-            street_number: user.street_number,
-            batiment: user.batiment,
-            postal_code: user.postal_code,
-            street_name: user.street_name,
-            dt_inscription: user.dt_inscription,
-            role: user.role
+            
         })
         res.json({message, data: user })
       })

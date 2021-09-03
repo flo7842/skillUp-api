@@ -1,7 +1,4 @@
 
-
-const moment= require('moment') 
-
 module.exports = (sequelize, DataTypes) => {
 
     const User = sequelize.define('User', {
@@ -48,9 +45,6 @@ module.exports = (sequelize, DataTypes) => {
       birth_date: {
         type: DataTypes.DATEONLY,
         allowNull: true,
-         get: function() {
-           return moment.utc(this.getDataValue('regDate')).format('DD-MM-YYYY');
-         },
       },
       phone_number: {
         type: DataTypes.STRING,

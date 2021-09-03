@@ -16,7 +16,7 @@ module.exports = (app) => {
 
         let message;
 
-        if(course.length > 2){
+        if(course.length > 1){
             message = `${course.length} cours ont été trouvés.`
         }else{
             message = `Un cour a été trouvé.`
