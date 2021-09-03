@@ -5,8 +5,15 @@ const checkEmailAndPass = require('../../middlewares/checkEmailAndPass')
 const checkPhoneNumber = require('../../middlewares/checkPhoneNumber')
 
 module.exports = (app) => {
-  let role;
+
+    let role;
+
     app.post('/api/register', checkEmailAndPass, (req, res) => {
+
+        if(req.body.user_name.length > 15 || req.body.user_name.length < 2){
+            return res.status(400).json({'erreur': 'Votre pseudo doit être compris entre 3 et 15 caractères.'})
+        }
+
         passwordHash = bcrypt.hashSync(req.body.user_password, 10);
         Role.findByPk(1)
       .then(rolename => {

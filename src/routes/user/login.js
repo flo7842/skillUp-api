@@ -4,16 +4,23 @@ const jwt = require('jsonwebtoken')
 
 
 module.exports = (app) => {
-  console.log(bcrypt.hashSync("Kopnord784210", 10))
-  app.post('/api/login', (req, res) => {
   
-    User.findOne({ where: { email: req.body.email } }).then(user => {
+  app.post('/api/login', (req, res) => {
+
+    let email = req.body.email
+    let body_password = req.body.user_password
+
+    if(email == null || email == null){
+        return res.status(400).json({ 'erreur': 'Des paramètres sont manquants !' })
+    }
+  
+    User.findOne({ where: { email: email } }).then(user => {
       
         if(!user){
             const message = "L'utilisateur demandé n'existe pas."
-            return res.status(404).json({ message })
+            return res.status(401).json({ message })
         }
-        bcrypt.compare(req.body.user_password, user.user_password).then(isPasswordValid => {
+        bcrypt.compare(body_password, user.user_password).then(isPasswordValid => {
           if(!isPasswordValid) {
             const message = `Le mot de passe est incorrect.`;
             return res.status(401).json({ message })
